@@ -45,6 +45,12 @@ async def run_query(request: QueryRequest):
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+from fastapi.responses import RedirectResponse
+
+@app.get("/")
+def redirect_to_docs():
+    return RedirectResponse(url="/docs")
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
